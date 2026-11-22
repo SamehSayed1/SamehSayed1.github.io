@@ -49,15 +49,14 @@ html[lang=en] h1,html[lang=en] h2{letter-spacing:-.025em}
 .nav-in{display:flex;align-items:center;gap:24px;height:72px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
 .brand-mark{position:relative;display:grid;place-items:center;height:38px;width:38px;border-radius:12px;background:var(--grad);color:#fff;box-shadow:0 6px 16px -6px rgba(91,63,240,.7)}
-.brand-mark .mic{width:20px;height:20px;fill:#fff;animation:micbob 2.4s ease-in-out infinite;transform-origin:50% 85%}
-@keyframes micbob{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.brand-mark .mic{width:20px;height:20px;fill:#fff}
 .brand-mark .wv{position:absolute;top:50%;display:flex;gap:2px;transform:translateY(-62%)}
 .brand-mark .wv-l{left:3px;flex-direction:row-reverse}.brand-mark .wv-r{right:3px}
 .brand-mark .wv i{display:block;width:4px;height:4px;border:1.6px solid #fff;border-radius:50%;clip-path:inset(0 0 0 50%);opacity:0;animation:wave 1.6s ease-out infinite}
 .brand-mark .wv-l i{clip-path:inset(0 50% 0 0)}
 .brand-mark .wv i:nth-child(2){width:7px;height:7px;animation-delay:.25s}
 @keyframes wave{0%{opacity:0;transform:scale(.6)}40%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
-.brand:hover .brand-mark .mic{animation-duration:.8s}
+.brand:hover .brand-mark .wv i{animation-duration:.9s}
 @keyframes bars{50%{transform:scaleY(.45)}}
 .links{display:flex;gap:4px;margin-inline-start:auto}
 .links a{padding:8px 14px;border-radius:999px;color:var(--ink-2);font-size:15px;transition:background .2s,color .2s}
@@ -80,6 +79,10 @@ html[lang=ar] .lang [data-l=ar],html[lang=en] .lang [data-l=en]{background:var(-
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
 h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;text-wrap:balance}
 html[lang=ar] h1{line-height:1.4}
+h1 .mark{position:relative;display:inline-block;white-space:nowrap;color:var(--ink);isolation:isolate}
+h1 .mark::after{content:"";position:absolute;inset-inline:-2%;bottom:-.06em;height:.4em;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 20%27 preserveAspectRatio=%27none%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 x2=%271%27%3E%3Cstop offset=%270%27 stop-color=%27%234361EE%27/%3E%3Cstop offset=%271%27 stop-color=%27%238E3BF0%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%27M3 13 C 50 5, 110 4, 197 9 C 140 9, 80 12, 20 17%27 fill=%27none%27 stroke=%27url(%23g)%27 stroke-width=%277%27 stroke-linecap=%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat;clip-path:inset(0 100% 0 0);animation:draw 1s .6s cubic-bezier(.6,.1,.2,1) forwards;z-index:-1}
+html[dir=rtl] h1 .mark::after{transform:scaleX(-1)}
+@keyframes draw{to{clip-path:inset(0 0 0 0)}}
 h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{font-size:clamp(16px,1.5vw,18px);color:var(--ink-2);margin:22px 0 24px;max-width:600px;font-weight:300}
 .dialects{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}

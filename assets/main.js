@@ -171,7 +171,7 @@ function addSparks() {
   const em = $("h1 em"); if (!em || em.parentElement.classList.contains("life")) return;
   const wrap = document.createElement("span"); wrap.className = "life";
   em.replaceWith(wrap); wrap.appendChild(em);
-  const S = [[6,"0s","3.4s","-8px",14,""],[20,"1.1s","3.8s","10px",10,"dot"],[36,"2.3s","3.2s","-6px",12,""],[52,".6s","4s","12px",9,"dot"],[68,"1.7s","3.5s","-10px",15,""],[84,"2.8s","3.6s","7px",10,"dot"],[94,"3.4s","3.9s","-4px",11,""]];
+  const S = [[6,".3s","1.7s","-8px",14,""],[20,".55s","1.8s","10px",10,"dot"],[36,".4s","1.6s","-6px",12,""],[52,".7s","1.8s","12px",9,"dot"],[68,".35s","1.7s","-10px",15,""],[84,".6s","1.6s","7px",10,"dot"],[94,".8s","1.7s","-4px",11,""]];
   wrap.insertAdjacentHTML("beforeend", '<span class="sparks" aria-hidden="true">' + S.map(([l,w,d,dx,sz,c]) => '<i class="' + c + '" style="left:' + l + '%;--w:' + w + ';--d:' + d + ';--dx:' + dx + ';--s:' + sz + 'px"></i>').join("") + "</span>");
 }
 

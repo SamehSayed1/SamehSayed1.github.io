@@ -86,7 +86,7 @@ html[dir=rtl] h1 .mark::after{transform:scaleX(-1)}
 h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 h1 .life{position:relative;display:inline-block}
 h1 .sparks{position:absolute;inset:0;pointer-events:none;filter:drop-shadow(0 0 4px rgba(123,47,247,.55))}
-h1 .sparks i{position:absolute;bottom:45%;width:var(--s,8px);height:var(--s,8px);opacity:0;background:linear-gradient(135deg,#6D8BFF,#B07CFF);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:rise var(--d,3.4s) ease-out var(--w,0s) infinite}
+h1 .sparks i{position:absolute;bottom:45%;width:var(--s,8px);height:var(--s,8px);opacity:0;background:linear-gradient(135deg,#6D8BFF,#B07CFF);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:rise var(--d,1.7s) ease-out var(--w,0s) 1 both}
 h1 .sparks i.dot{border-radius:50%;clip-path:none;background:radial-gradient(circle,#fff 0,#9F7BFF 45%,rgba(123,47,247,0) 72%)}
 @keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.3) rotate(0)}18%{opacity:1}100%{opacity:0;transform:translate(var(--dx,0),-1.3em) scale(1) rotate(90deg)}}
 .lead{font-size:clamp(16px,1.5vw,18px);color:var(--ink-2);margin:22px 0 24px;max-width:600px;font-weight:300}

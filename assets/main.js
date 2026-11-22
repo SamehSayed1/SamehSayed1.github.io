@@ -382,6 +382,21 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
   counters.forEach((c) => { c.textContent = "0"; co.observe(c); });
 }
 
+/* ---------- keep the address bar clean ---------- */
+// Old links may carry "?sent=1" or "#top": drop them without reloading.
+if (location.search || location.hash === "#top") history.replaceState(null, "", location.pathname + (location.hash === "#top" ? "" : location.hash));
+// In-page links scroll smoothly without adding "#..." to the URL.
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.defaultPrevented) return;
+  const id = a.getAttribute("href").slice(1);
+  const el = id === "top" ? null : document.getElementById(id);
+  if (id !== "top" && !el) return;
+  e.preventDefault();
+  if (el) el.scrollIntoView({ behavior: "smooth" }); else scrollTo({ top: 0, behavior: "smooth" });
+  if (location.hash) history.replaceState(null, "", location.pathname);
+});
+
 /* ---------- nav / lang / reveal ---------- */
 const nav = $("#nav");
 const onScroll = () => nav.classList.toggle("scrolled", scrollY > 10);

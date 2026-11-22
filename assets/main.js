@@ -387,6 +387,14 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
 if (location.search || location.hash === "#top") history.replaceState(null, "", location.pathname + (location.hash === "#top" ? "" : location.hash));
 // In-page links scroll smoothly without adding "#..." to the URL.
 document.addEventListener("click", (e) => {
+  // The name/logo goes back to the top of the page (no reload, nothing added to the URL).
+  const brand = e.target.closest("a.brand");
+  if (brand && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: "smooth" });
+    if (location.hash || location.search) history.replaceState(null, "", location.pathname);
+    return;
+  }
   const a = e.target.closest('a[href^="#"]');
   if (!a || e.defaultPrevented) return;
   const id = a.getAttribute("href").slice(1);

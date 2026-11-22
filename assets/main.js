@@ -158,11 +158,21 @@ function applyLang() {
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   $$("[data-i18n]").forEach((el) => { const k = el.dataset.i18n; if (t[k] != null) el.textContent = t[k]; });
   $$("[data-i18n-html]").forEach((el) => { const k = el.dataset.i18nHtml; if (t[k] != null) el.innerHTML = t[k]; });
+  addSparks();
   document.title = lang === "ar" ? "سامح سيد — معلّق صوتي" : "Sameh Sayed — Voice-over Artist";
   const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t.wa)}`;
   $$(".js-wa").forEach((a) => (a.href = wa));
   renderDialectChips(); renderFilters(); renderGrid(); renderServices(); renderReviews();
   if (fileName.dataset.picked) fileName.textContent = fileName.dataset.picked;
+}
+
+/* ---------- sparks rising from the highlighted word ---------- */
+function addSparks() {
+  const em = $("h1 em"); if (!em || em.parentElement.classList.contains("life")) return;
+  const wrap = document.createElement("span"); wrap.className = "life";
+  em.replaceWith(wrap); wrap.appendChild(em);
+  const S = [[6,"0s","3.4s","-8px",14,""],[20,"1.1s","3.8s","10px",10,"dot"],[36,"2.3s","3.2s","-6px",12,""],[52,".6s","4s","12px",9,"dot"],[68,"1.7s","3.5s","-10px",15,""],[84,"2.8s","3.6s","7px",10,"dot"],[94,"3.4s","3.9s","-4px",11,""]];
+  wrap.insertAdjacentHTML("beforeend", '<span class="sparks" aria-hidden="true">' + S.map(([l,w,d,dx,sz,c]) => '<i class="' + c + '" style="left:' + l + '%;--w:' + w + ';--d:' + d + ';--dx:' + dx + ';--s:' + sz + 'px"></i>').join("") + "</span>");
 }
 
 /* ---------- hero chips ---------- */

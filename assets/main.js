@@ -17,7 +17,7 @@ const TYPES = {
   ad:      { ar: "إعلان تجاري",     en: "Commercial" },
   app:     { ar: "إعلان تطبيق",     en: "App Promo" },
   corp:    { ar: "فيديو شركات",     en: "Corporate" },
-  cartoon: { ar: "كرتون وشخصيات",   en: "Cartoon & Characters" },
+  cartoon: { ar: "رسوم متحركة",     en: "Cartoon & Characters" },
   book:    { ar: "كتاب صوتي",       en: "Audiobook" },
   ivr:     { ar: "رد آلي IVR",      en: "IVR" },
 };
@@ -33,14 +33,14 @@ const WORKS = [
     title: { ar: "إعلان تطبيق الريف", en: "Al Reef App" },
     note:  { ar: "إعلان تطبيق بلهجة سعودية قريبة من الجمهور.", en: "App promo in a warm, natural Saudi dialect." } },
   { id: "cartoon-en", d: ["en"], type: "cartoon", dur: 76,
-    title: { ar: "كرتون إنجليزي — كل الأصوات بصوتي", en: "English Cartoon — Every Voice Is Mine" },
-    note:  { ar: "أكتر من شخصية في نفس المشهد، وكلها بصوت واحد.", en: "Several characters in one scene — all performed by one voice." } },
+    title: { ar: "رسوم متحركة بالإنجليزية — جميع الأصوات بصوتي", en: "English Cartoon — Every Voice Is Mine" },
+    note:  { ar: "عدة شخصيات في المشهد نفسه، جميعها بصوت واحد.", en: "Several characters in one scene — all performed by one voice." } },
   { id: "modern-home", d: ["eg"], type: "ad", dur: 35,
     title: { ar: "إعلان مودرن هوم للمفروشات", en: "Modern Home Furnishings" },
-    note:  { ar: "تعليق صوتي وتصوير ومونتاج — المشروع كله من تنفيذي.", en: "Voice-over, filming and editing — the whole piece was produced by me." } },
+    note:  { ar: "تعليق صوتي وتصوير ومونتاج — المشروع بالكامل من تنفيذي.", en: "Voice-over, filming and editing — the whole piece was produced by me." } },
   { id: "audiobook", d: ["fusha"], type: "book", dur: 104,
     title: { ar: "كتاب صوتي: فن اللامبالاة", en: "Audiobook: “The Subtle Art…” (Arabic)" },
-    note:  { ar: "سرد هادي ومريح يشد المستمع لآخر صفحة.", en: "Calm, engaging narration that keeps listeners to the last page." } },
+    note:  { ar: "سرد هادئ ومريح يأسر المستمع حتى الصفحة الأخيرة.", en: "Calm, engaging narration that keeps listeners to the last page." } },
   { id: "car", audio: true, src: "assets/audio/car-commercial-fusha.wav", d: ["fusha"], type: "ad", dur: 0,
     title: { ar: "إعلان سيارات", en: "Car Commercial" },
     note:  { ar: "أداء إعلاني فخم وحماسي باللغة العربية الفصحى.", en: "A bold, premium commercial read in Standard Arabic." } },
@@ -54,36 +54,36 @@ const WORKS = [
     title: { ar: "إعلان AZ Logistic", en: "AZ Logistic" },
     note:  { ar: "إعلان قصير ومباشر لشركة لوجستيات بالفصحى.", en: "Short, punchy logistics ad in Standard Arabic." } },
   { id: "cartoon-ar", d: ["eg"], type: "cartoon", dur: 68,
-    title: { ar: "دوبلاج كرتون — كل الأصوات بصوتي", en: "Cartoon Dub — Every Voice Is Mine" },
-    note:  { ar: "دوبلاج عربي لمشاهد كرتون بأصوات شخصيات متنوعة.", en: "Arabic cartoon dub with a range of character voices." } },
+    title: { ar: "دبلجة رسوم متحركة — جميع الأصوات بصوتي", en: "Cartoon Dub — Every Voice Is Mine" },
+    note:  { ar: "دبلجة عربية لمشاهد رسوم متحركة بأصوات شخصيات متنوعة.", en: "Arabic cartoon dub with a range of character voices." } },
   { id: "ivr", d: ["fusha", "en"], type: "ivr", dur: 35,
     title: { ar: "رد آلي IVR — Tech Manage", en: "IVR System — Tech Manage" },
-    note:  { ar: "رسائل رد آلي باللغتين العربية والإنجليزية.", en: "Phone-system prompts recorded in both Arabic and English." } },
+    note:  { ar: "رسائل رد آلي بالعربية الفصحى والإنجليزية.", en: "Phone-system prompts recorded in both Arabic and English." } },
 ];
 
 const SERVICES = [
   { k: "ad",      icon: "M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zm13.5 1A4.5 4.5 0 0 0 14 8v8a4.47 4.47 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06A9 9 0 0 0 14 3.23z",
-    ar: ["إعلانات تجارية", "إعلانات تلفزيون وسوشيال ميديا بأداء يبيع ويقنع."],
+    ar: ["إعلانات تجارية", "إعلانات تلفزيونية وإعلانات لمنصات التواصل بأداء مقنع يحقق المبيعات."],
     en: ["Commercials", "TV and social ads with a performance that sells."] },
   { k: "app",     icon: "M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 3v13h10V5zm5 14.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z",
-    ar: ["إعلانات التطبيقات والموشن جرافيك", "شرح مميزات تطبيقك بصوت واضح وإيقاع مضبوط."],
+    ar: ["إعلانات التطبيقات والموشن جرافيك", "شرح مزايا تطبيقك بصوت واضح وإيقاع مضبوط."],
     en: ["App & Motion-Graphics Promos", "Explain your product with clear, perfectly paced delivery."] },
   { k: "corp",    icon: "M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4h2a2 2 0 0 1 2 2v10h-6v-4h-4v4zm4-14v2h2V7zm4 0v2h2V7zm-4 4v2h2v-2zm4 0v2h2v-2z",
-    ar: ["فيديوهات الشركات", "فيديوهات تعريفية وعروض بأسلوب احترافي ورسمي."],
+    ar: ["فيديوهات الشركات", "أفلام تعريفية وعروض تقديمية بأسلوب احترافي ورسمي."],
     en: ["Corporate Videos", "Company profiles and presentations in a professional tone."] },
   { k: "cartoon", icon: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-3.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 18a5.5 5.5 0 0 1-5-3.2h10A5.5 5.5 0 0 1 12 18z",
-    ar: ["كرتون وأصوات شخصيات", "أكتر من شخصية بصوت واحد، لكل شخصية روحها."],
+    ar: ["الرسوم المتحركة وأصوات الشخصيات", "عدة شخصيات بصوت واحد، ولكل شخصية روحها الخاصة."],
     en: ["Cartoons & Characters", "Multiple characters, one voice — each with its own personality."] },
   { k: "book",    icon: "M4 4.5A2.5 2.5 0 0 1 6.5 2H20v16H6.5a1 1 0 0 0 0 2H20v2H6.5A2.5 2.5 0 0 1 4 19.5zM8 6v2h8V6z",
-    ar: ["كتب صوتية وسرد", "سرد هادي ومريح يخلّي المستمع يكمّل للآخر."],
+    ar: ["الكتب الصوتية والسرد", "سرد هادئ وممتع يجعل المستمع يتابع حتى النهاية."],
     en: ["Audiobooks & Narration", "Calm, immersive storytelling that keeps people listening."] },
   { k: "ivr",     icon: "M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z",
-    ar: ["رد آلي IVR", "رسائل الرد الآلي والسنترال بالعربي والإنجليزي."],
+    ar: ["الرد الآلي IVR", "رسائل الرد الآلي ومراكز الاتصال بالعربية والإنجليزية."],
     en: ["IVR & Phone Systems", "Call-center and on-hold prompts in Arabic and English."] },
 ];
 
 const PROCESS = {
-  ar: [["ابعتلي التفاصيل", "النص، نوع المشروع، واللهجة اللي محتاجها."], ["نتفق على الأداء", "الأسلوب والإحساس المناسب لجمهورك."], ["التسجيل والمعالجة", "تسجيل نظيف وتنقية للصوت بجودة استوديو."], ["التسليم والتعديل", "استلم الملفات، ولو في ملاحظات نظبطها."]],
+  ar: [["أرسل التفاصيل", "النص، ونوع المشروع، واللهجة المطلوبة."], ["نتفق على الأداء", "الأسلوب والإحساس المناسبان لجمهورك."], ["التسجيل والمعالجة", "تسجيل نقي ومعالجة للصوت بجودة الاستوديو."], ["التسليم والتعديل", "تستلم الملفات، وتُعدَّل أي ملاحظات فورًا."]],
   en: [["Send the details", "Your script, project type and the dialect you need."], ["Agree on the read", "The style and feeling that fits your audience."], ["Record & polish", "Clean recording and studio-grade audio cleanup."], ["Deliver & refine", "Get your files — and any notes get handled."]],
 };
 
@@ -104,19 +104,19 @@ const T = {
     "hero.eyebrow": "معلّق صوتي محترف",
     "hero.title": "صوت يمنح كلماتك <em>حياة</em>،<br>ويجعل رسالتك لا تُنسى.",
     "hero.lead": "معلّق صوتي بخبرة تزيد عن 5 سنوات، أقدّم أداءً صوتيًا احترافيًا يجمع بين جودة الصوت، والإحساس، والتنوع في الأسلوب، باللهجة المصرية، والفصحى، والسعودية، والإنجليزية؛ لأمنح كل مشروع صوتًا يليق به ويترك أثرًا لدى جمهوره.",
-    "hero.listen": "اسمع أعمالي", "hero.wa": "كلّمني واتساب", "hero.years": "سنوات خبرة", "hero.studio": "تسجيل بجودة استوديو",
-    "demo.title": "اسمع صوتي — إعلان سيارات",
-    "stats.years": "سنوات من الخبرة", "stats.dialects": "لهجات ولغات", "stats.works": "عيّنة في المعرض", "stats.fields": "مجالات تعليق",
-    "work.kicker": "المعرض", "work.title": "اسمع الفرق بنفسك", "work.sub": "اختار اللهجة أو اللغة، واضغط على أي عمل علشان تشغّله.",
+    "hero.listen": "استمع إلى أعمالي", "hero.wa": "تواصل عبر واتساب", "hero.years": "سنوات من الخبرة", "hero.studio": "تسجيل بجودة الاستوديو",
+    "demo.title": "استمع إلى صوتي — إعلان سيارات",
+    "stats.years": "سنوات من الخبرة", "stats.dialects": "لهجات ولغات",
+    "work.kicker": "معرض الأعمال", "work.title": "استمع إلى الفرق بنفسك", "work.sub": "اختر اللهجة أو اللغة، ثم اضغط على أي عمل لتشغيله.",
     "f.all": "الكل",
-    "svc.kicker": "الخدمات", "svc.title": "صوت واحد لكل أنواع المشاريع", "proc.title": "إزاي بنشتغل؟",
-    "rev.kicker": "آراء العملاء", "rev.title": "قالوا عن الشغل", "rev.role": "صاحب مشروع",
-    "ct.kicker": "تواصل معي", "ct.title": "جاهز نسجّل مشروعك؟", "ct.sub": "ابعتلي تفاصيل مشروعك والنص لو جاهز، وهرد عليك في أسرع وقت.", "ct.wa": "راسلني على واتساب",
-    "f.title": "أو ابعت رسالة بالإيميل", "f.name": "الاسم", "f.email": "إيميلك", "f.subject": "عنوان الرسالة", "f.msg": "تفاصيل المشروع",
-    "f.file": "إرفاق ملف (النص أو أي مرجع) — اختياري", "f.send": "إرسال الرسالة", "f.ok": "وصلت رسالتك، شكرًا! هرد عليك قريب.",
-    "foot.role": "معلّق صوتي", "foot.d": "مصري · فصحى · سعودي · English",
+    "svc.kicker": "الخدمات", "svc.title": "صوت واحد لجميع أنواع المشاريع", "proc.title": "كيف نعمل معًا؟",
+    "rev.kicker": "آراء العملاء", "rev.title": "ماذا قال العملاء؟", "rev.role": "صاحب مشروع",
+    "ct.kicker": "تواصل معي", "ct.title": "هل أنت مستعد لتسجيل مشروعك؟", "ct.sub": "أرسل إليّ تفاصيل مشروعك والنص إن كان جاهزًا، وسأرد عليك في أقرب وقت ممكن.", "ct.wa": "راسلني عبر واتساب", "ct.wa2": "رد سريع ومباشر",
+    "f.title": "أو أرسل رسالة عبر البريد الإلكتروني", "f.name": "الاسم", "f.email": "بريدك الإلكتروني", "f.subject": "عنوان الرسالة", "f.msg": "تفاصيل المشروع",
+    "f.file": "إرفاق ملف (النص أو أي مرجع) — اختياري", "f.send": "إرسال الرسالة", "f.sending": "جارٍ الإرسال…", "f.ok": "تم إرسال رسالتك بنجاح، شكرًا لك! سأرد عليك قريبًا.",
+    "foot.role": "معلّق صوتي",
     "card.audio": "عيّنة صوتية", "card.play": "تشغيل",
-    wa: "أهلاً أ. سامح، شفت موقعك وحابب أتكلم معاك عن مشروع تعليق صوتي.",
+    wa: "مرحبًا أستاذ سامح، اطّلعت على موقعك وأودّ التحدث معك بشأن مشروع تعليق صوتي.",
   },
   en: {
     name: "Sameh Sayed",
@@ -126,15 +126,15 @@ const T = {
     "hero.lead": "Voice-over artist with 5+ years of experience, delivering professional performances that combine audio quality, real feeling and stylistic range — in Egyptian, Standard Arabic, Saudi and English — so every project gets the voice it deserves and leaves a lasting impression on its audience.",
     "hero.listen": "Listen to my work", "hero.wa": "Chat on WhatsApp", "hero.years": "Years of experience", "hero.studio": "Studio-quality recording",
     "demo.title": "Hear my voice — Car Commercial",
-    "stats.years": "Years of experience", "stats.dialects": "Dialects & languages", "stats.works": "Samples in the gallery", "stats.fields": "Voice-over fields",
+    "stats.years": "Years of experience", "stats.dialects": "Dialects & languages",
     "work.kicker": "Portfolio", "work.title": "Hear the difference", "work.sub": "Pick a dialect or language, then tap any piece to play it.",
     "f.all": "All",
     "svc.kicker": "Services", "svc.title": "One voice for every kind of project", "proc.title": "How we work",
     "rev.kicker": "Client reviews", "rev.title": "What clients say", "rev.role": "Project owner",
-    "ct.kicker": "Contact", "ct.title": "Ready to record your project?", "ct.sub": "Send me your project details — and the script if it's ready — and I'll get back to you quickly.", "ct.wa": "Message me on WhatsApp",
+    "ct.kicker": "Contact", "ct.title": "Ready to record your project?", "ct.sub": "Send me your project details — and the script if it's ready — and I'll get back to you quickly.", "ct.wa": "Message me on WhatsApp", "ct.wa2": "Quick, direct reply",
     "f.title": "Or send an email", "f.name": "Name", "f.email": "Your email", "f.subject": "Subject", "f.msg": "Project details",
-    "f.file": "Attach a file (script or reference) — optional", "f.send": "Send message", "f.ok": "Message received — thank you! I'll reply soon.",
-    "foot.role": "Voice-over Artist", "foot.d": "Egyptian · Standard Arabic · Saudi · English",
+    "f.file": "Attach a file (script or reference) — optional", "f.send": "Send message", "f.sending": "Sending…", "f.ok": "Your message was sent — thank you! I'll reply soon.",
+    "foot.role": "Voice-over Artist",
     "card.audio": "Audio sample", "card.play": "Play",
     wa: "Hi Sameh, I saw your website and I'd like to talk about a voice-over project.",
   },
@@ -194,7 +194,6 @@ const tagsHTML = (w) =>
   `<span class="tag tag-type">${TYPES[w.type][lang]}</span>`;
 
 function renderGrid() {
-  $("#statWorks").textContent = WORKS.length;
   $("#grid").innerHTML = WORKS.map((w, i) => {
     const media = w.audio
       ? `<div class="eq" aria-hidden="true">${Array.from({ length: 14 }, (_, j) => `<i style="height:${20 + ((j * 37) % 60)}px;animation-delay:-${(j * 0.13).toFixed(2)}s"></i>`).join("")}</div><span class="lbl">${T[lang]["card.audio"]}</span>`
@@ -339,9 +338,39 @@ fileIn.addEventListener("change", () => {
   if (f) { fileName.dataset.picked = f.name; fileName.textContent = f.name; }
   else { delete fileName.dataset.picked; fileName.textContent = T[lang]["f.file"]; }
 });
-const here = location.href.split("#")[0].split("?")[0];
-$("#nextUrl").value = here + "?sent=1#contact";
-if (new URLSearchParams(location.search).get("sent") === "1") { $("#formOk").hidden = false; }
+/* The form posts into a hidden iframe, so the page never reloads or jumps. */
+const form = $("#mailForm"), sink = $("#formSink"), ok = $("#formOk"), sendBtn = $("button[type=submit]", form);
+$("#nextUrl").value = new URL("thanks.html", location.href).href;
+let sending = false;
+form.addEventListener("submit", () => {
+  sending = true; ok.hidden = true;
+  sendBtn.disabled = true; sendBtn.firstElementChild.textContent = T[lang]["f.sending"];
+});
+sink.addEventListener("load", () => {
+  if (!sending) return;
+  sending = false;
+  sendBtn.disabled = false; sendBtn.firstElementChild.textContent = T[lang]["f.send"];
+  form.reset(); delete fileName.dataset.picked; fileName.textContent = T[lang]["f.file"];
+  ok.hidden = false;
+  ok.scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
+
+/* ---------- count-up stats ---------- */
+function countUp(el) {
+  const to = +el.dataset.count, dur = 1600, t0 = performance.now();
+  const step = (t) => {
+    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * e);
+    if (p < 1) requestAnimationFrame(step);
+  };
+  el.textContent = "0";
+  requestAnimationFrame(step);
+}
+const counters = $$("[data-count]");
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const co = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { countUp(e.target); co.unobserve(e.target); } }), { threshold: 0.6 });
+  counters.forEach((c) => { c.textContent = "0"; co.observe(c); });
+}
 
 /* ---------- nav / lang / reveal ---------- */
 const nav = $("#nav");

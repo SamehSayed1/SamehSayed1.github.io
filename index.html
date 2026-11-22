@@ -6,7 +6,7 @@
 <title>سامح سيد — معلّق صوتي | Sameh Sayed — Voice-over Artist</title>
 <meta name="description" content="سامح سيد، معلّق صوتي بخبرة تزيد عن 5 سنوات: مصري، فصحى، سعودي، وإنجليزي. إعلانات، تطبيقات، كرتون، كتب صوتية، ورد آلي IVR.">
 <meta property="og:title" content="سامح سيد — معلّق صوتي">
-<meta property="og:description" content="صوت يمنح كلماتك حياة، ويجعل رسالتك لا تُنسى. مصري · فصحى · سعودي · English">
+<meta property="og:description" content="صوت يمنح كلماتك حياة، ويجعل رسالتك لا تُنسى. مصري · فصحى · سعودي · إنجليزي">
 <meta property="og:image" content="assets/img/sameh.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#E6EBF2">
@@ -21,7 +21,10 @@
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="#top" class="brand" aria-label="Sameh Sayed">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg class="mic" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M6.5 10.5a5.5 5.5 0 0 0 11 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16v4M9 20.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wv wv-l"><i></i><i></i></span><span class="wv wv-r"><i></i><i></i></span>
+      </span>
       <span class="brand-name" data-i18n="name">سامح سيد</span>
     </a>
     <nav class="links" aria-label="Main">
@@ -50,8 +53,8 @@
         <p class="lead" data-i18n="hero.lead">معلّق صوتي بخبرة تزيد عن 5 سنوات، أقدّم أداءً صوتيًا احترافيًا يجمع بين جودة الصوت، والإحساس، والتنوع في الأسلوب، باللهجة المصرية، والفصحى، والسعودية، والإنجليزية؛ لأمنح كل مشروع صوتًا يليق به ويترك أثرًا لدى جمهوره.</p>
         <div class="dialects" id="heroDialects"></div>
         <div class="cta-row">
-          <a href="#work" class="btn btn-grad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span data-i18n="hero.listen">اسمع أعمالي</span></a>
-          <a class="btn btn-ghost js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.wa">كلّمني واتساب</span></a>
+          <a href="#work" class="btn btn-grad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span data-i18n="hero.listen">استمع إلى أعمالي</span></a>
+          <a class="btn btn-ghost js-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.wa">تواصل عبر واتساب</span></a>
         </div>
       </div>
 
@@ -59,8 +62,8 @@
         <div class="portrait">
           <div class="ring" aria-hidden="true"></div>
           <img src="assets/img/sameh.png" alt="سامح سيد" width="1024" height="1024" fetchpriority="high">
-          <div class="badge badge-exp"><b>+5</b><span data-i18n="hero.years">سنوات خبرة</span></div>
-          <div class="badge badge-mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12z"/></svg><span data-i18n="hero.studio">تسجيل بجودة استوديو</span></div>
+          <div class="badge badge-exp"><b>+5</b><span data-i18n="hero.years">سنوات من الخبرة</span></div>
+          <div class="badge badge-mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12z"/></svg><span data-i18n="hero.studio">تسجيل بجودة الاستوديو</span></div>
         </div>
 
         <div class="player" id="demo">
@@ -70,7 +73,7 @@
           </button>
           <div class="player-body">
             <div class="player-top">
-              <span class="player-title" data-i18n="demo.title">اسمع صوتي — إعلان سيارات</span>
+              <span class="player-title" data-i18n="demo.title">استمع إلى صوتي — إعلان سيارات</span>
               <span class="tag tag-fusha" data-i18n="d.fusha">فصحى</span>
             </div>
             <canvas class="wave" id="demoWave" height="44" aria-label="Waveform"></canvas>
@@ -83,10 +86,8 @@
 
     <div class="wrap">
       <ul class="stats reveal">
-        <li><b>+5</b><span data-i18n="stats.years">سنوات من الخبرة</span></li>
-        <li><b>4</b><span data-i18n="stats.dialects">لهجات ولغات</span></li>
-        <li><b id="statWorks">11</b><span data-i18n="stats.works">عيّنة في المعرض</span></li>
-        <li><b>6</b><span data-i18n="stats.fields">مجالات تعليق</span></li>
+        <li><b dir="ltr">+<span data-count="5">5</span></b><span data-i18n="stats.years">سنوات من الخبرة</span></li>
+        <li><b><span data-count="4">4</span></b><span data-i18n="stats.dialects">لهجات ولغات</span></li>
       </ul>
     </div>
   </section>
@@ -95,9 +96,9 @@
   <section class="section" id="work">
     <div class="wrap">
       <div class="head reveal">
-        <p class="kicker" data-i18n="work.kicker">المعرض</p>
-        <h2 data-i18n="work.title">اسمع الفرق بنفسك</h2>
-        <p class="sub" data-i18n="work.sub">اختار اللهجة أو اللغة، واضغط على أي عمل علشان تشغّله.</p>
+        <p class="kicker" data-i18n="work.kicker">معرض الأعمال</p>
+        <h2 data-i18n="work.title">استمع إلى الفرق بنفسك</h2>
+        <p class="sub" data-i18n="work.sub">اختر اللهجة أو اللغة، ثم اضغط على أي عمل لتشغيله.</p>
       </div>
 
       <div class="filters reveal" id="filters" role="tablist" aria-label="Filter by dialect"></div>
@@ -110,12 +111,12 @@
     <div class="wrap">
       <div class="head reveal">
         <p class="kicker" data-i18n="svc.kicker">الخدمات</p>
-        <h2 data-i18n="svc.title">صوت واحد لكل أنواع المشاريع</h2>
+        <h2 data-i18n="svc.title">صوت واحد لجميع أنواع المشاريع</h2>
       </div>
       <div class="services" id="services-list"></div>
 
       <div class="process reveal">
-        <h3 data-i18n="proc.title">إزاي بنشتغل؟</h3>
+        <h3 data-i18n="proc.title">كيف نعمل معًا؟</h3>
         <ol id="process"></ol>
       </div>
     </div>
@@ -126,7 +127,7 @@
     <div class="wrap">
       <div class="head reveal">
         <p class="kicker" data-i18n="rev.kicker">آراء العملاء</p>
-        <h2 data-i18n="rev.title">قالوا عن الشغل</h2>
+        <h2 data-i18n="rev.title">ماذا قال العملاء؟</h2>
       </div>
       <div class="reviews" id="reviews-list"></div>
     </div>
@@ -137,24 +138,20 @@
     <div class="wrap contact-in">
       <div class="contact-side reveal">
         <p class="kicker kicker-light" data-i18n="ct.kicker">تواصل معي</p>
-        <h2 data-i18n="ct.title">جاهز نسجّل مشروعك؟</h2>
-        <p class="sub" data-i18n="ct.sub">ابعتلي تفاصيل مشروعك والنص لو جاهز، وهرد عليك في أسرع وقت.</p>
+        <h2 data-i18n="ct.title">هل أنت مستعد لتسجيل مشروعك؟</h2>
+        <p class="sub" data-i18n="ct.sub">أرسل إليّ تفاصيل مشروعك والنص إن كان جاهزًا، وسأرد عليك في أقرب وقت ممكن.</p>
         <a class="wa-card js-wa" href="#" target="_blank" rel="noopener">
           <span class="wa-ico"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa"/></svg></span>
-          <span><b data-i18n="ct.wa">راسلني على واتساب</b><small dir="ltr">+20 112 240 1533</small></span>
+          <span><b data-i18n="ct.wa">راسلني عبر واتساب</b><small data-i18n="ct.wa2">رد سريع ومباشر</small></span>
           <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="mail-line" href="mailto:neverstopdreamingbuddy@gmail.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm8 7.2L4.6 7H19.4z" /></svg>
-          <span dir="ltr">neverstopdreamingbuddy@gmail.com</span>
         </a>
       </div>
 
-      <form class="form reveal" id="mailForm" action="https://formsubmit.co/neverstopdreamingbuddy@gmail.com" method="POST" enctype="multipart/form-data">
-        <h3 data-i18n="f.title">أو ابعت رسالة بالإيميل</h3>
+      <form class="form reveal" id="mailForm" action="https://formsubmit.co/neverstopdreamingbuddy@gmail.com" method="POST" enctype="multipart/form-data" target="formSink">
+        <h3 data-i18n="f.title">أو أرسل رسالة عبر البريد الإلكتروني</h3>
         <div class="row2">
           <label><span data-i18n="f.name">الاسم</span><input name="name" required autocomplete="name"></label>
-          <label><span data-i18n="f.email">إيميلك</span><input name="email" type="email" required autocomplete="email" dir="ltr"></label>
+          <label><span data-i18n="f.email">بريدك الإلكتروني</span><input name="email" type="email" required autocomplete="email" dir="ltr"></label>
         </div>
         <label><span data-i18n="f.subject">عنوان الرسالة</span><input name="_subject" required></label>
         <label><span data-i18n="f.msg">تفاصيل المشروع</span><textarea name="message" rows="5" required></textarea></label>
@@ -166,8 +163,9 @@
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" id="nextUrl" value="">
         <button class="btn btn-grad btn-block" type="submit"><span data-i18n="f.send">إرسال الرسالة</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></button>
-        <p class="form-ok" id="formOk" hidden data-i18n="f.ok">وصلت رسالتك، شكرًا! هرد عليك قريب.</p>
+        <p class="form-ok" id="formOk" hidden role="status" data-i18n="f.ok">تم إرسال رسالتك بنجاح، شكرًا لك! سأرد عليك قريبًا.</p>
       </form>
+      <iframe name="formSink" id="formSink" title="form" hidden></iframe>
     </div>
   </section>
 </main>
@@ -175,7 +173,6 @@
 <footer class="foot">
   <div class="wrap foot-in">
     <span>© <span id="yr">2026</span> <span data-i18n="name">سامح سيد</span> — <span data-i18n="foot.role">معلّق صوتي</span></span>
-    <span class="foot-d" data-i18n="foot.d">مصري · فصحى · سعودي · English</span>
   </div>
 </footer>
 

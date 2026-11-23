@@ -213,13 +213,14 @@ function renderFilters() {
 }
 /* On phones the filter row scrolls sideways: fade the far edge and show a hint until the end is reached. */
 function updateSwipe() {
-  const row = $("#filters"), hint = $("#swipeHint");
-  if (!row || !hint) return;
+  const row = $("#filters"), more = $("#filtersMore");
+  if (!row || !more) return;
   const max = row.scrollWidth - row.clientWidth;
   const overflow = max > 4;
   const atEnd = !overflow || Math.abs(row.scrollLeft) >= max - 4; // RTL scrollLeft is negative in modern browsers
   row.classList.toggle("can-scroll", overflow && !atEnd);
-  hint.hidden = !overflow || row.dataset.swiped === "1";
+  more.hidden = !overflow || atEnd;
+  more.setAttribute("aria-label", lang === "ar" ? "المزيد من اللهجات" : "More dialects");
 }
 function setFilter(k) {
   filter = k;
@@ -451,8 +452,11 @@ const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => e
 $$(".reveal").forEach((el) => (io ? io.observe(el) : el.classList.add("in")));
 
 $("#filters").addEventListener("scroll", updateSwipe, { passive: true });
-// The hint goes away only after a real swipe (the browser can scroll the row by itself on load).
-["touchstart", "pointerdown", "wheel"].forEach((ev) => $("#filters").addEventListener(ev, () => { $("#filters").dataset.swiped = "1"; updateSwipe(); }, { passive: true }));
+// The arrow button slides the row toward its end (left in Arabic, right in English).
+$("#filtersMore").addEventListener("click", () => {
+  const row = $("#filters"), dir = document.documentElement.dir === "rtl" ? -1 : 1;
+  row.scrollBy({ left: dir * row.clientWidth * 0.7, behavior: "smooth" });
+});
 addEventListener("resize", updateSwipe);
 $("#yr").textContent = new Date().getFullYear();
 applyLang();

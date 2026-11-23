@@ -125,7 +125,7 @@ const T = {
     "hero.listen": "استمع إلى أعمالي", "hero.wa": "تواصل عبر واتساب", "hero.years": "سنوات من الخبرة", "hero.studio": "تسجيل بجودة احترافية",
     "demo.title": "استمع إلى صوتي — إعلان سيارات",
     "stats.years": "سنوات من الخبرة", "stats.dialects": "لهجات ولغات",
-    "work.kicker": "معرض الأعمال", "work.title": "استمع إلى الفرق بنفسك", "work.sub": "اختر اللهجة أو اللغة، ثم اضغط على أي عمل لتشغيله.",
+    "work.kicker": "معرض الأعمال", "work.title": "استمع إلى الفرق بنفسك", "work.sub": "اختر اللهجة أو اللغة، ثم اضغط على أي عمل لتشغيله.", "work.swipe": "← اسحب لرؤية باقي اللهجات",
     "f.all": "الكل",
     "svc.kicker": "الخدمات", "svc.title": "صوت واحد لجميع أنواع المشاريع", "proc.title": "كيف نعمل معًا؟",
     "rev.kicker": "آراء العملاء", "rev.title": "ماذا قال العملاء؟", "rev.role": "صاحب مشروع",
@@ -145,7 +145,7 @@ const T = {
     "hero.listen": "Listen to my work", "hero.wa": "Chat on WhatsApp", "hero.years": "Years of experience", "hero.studio": "Professional-quality recording",
     "demo.title": "Hear my voice — Car Commercial",
     "stats.years": "Years of experience", "stats.dialects": "Dialects & languages",
-    "work.kicker": "Portfolio", "work.title": "Hear the difference", "work.sub": "Pick a dialect or language, then tap any piece to play it.",
+    "work.kicker": "Portfolio", "work.title": "Hear the difference", "work.sub": "Pick a dialect or language, then tap any piece to play it.", "work.swipe": "Swipe to see more →",
     "f.all": "All",
     "svc.kicker": "Services", "svc.title": "One voice for every kind of project", "proc.title": "How we work",
     "rev.kicker": "Client reviews", "rev.title": "What clients say", "rev.role": "Project owner",
@@ -209,6 +209,17 @@ function renderFilters() {
   $("#filters").innerHTML = btn("all", T[lang]["f.all"], WORKS.length, false) +
     Object.entries(DIALECTS).map(([k, v]) => btn(k, v[lang], count(k), true)).join("");
   $$("#filters .f-btn").forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.f)));
+  requestAnimationFrame(updateSwipe);
+}
+/* On phones the filter row scrolls sideways: fade the far edge and show a hint until the end is reached. */
+function updateSwipe() {
+  const row = $("#filters"), hint = $("#swipeHint");
+  if (!row || !hint) return;
+  const max = row.scrollWidth - row.clientWidth;
+  const overflow = max > 4;
+  const atEnd = !overflow || Math.abs(row.scrollLeft) >= max - 4; // RTL scrollLeft is negative in modern browsers
+  row.classList.toggle("can-scroll", overflow && !atEnd);
+  hint.hidden = !overflow || row.dataset.swiped === "1";
 }
 function setFilter(k) {
   filter = k;
@@ -439,6 +450,10 @@ $("#langBtn").addEventListener("click", () => {
 const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 }) : null;
 $$(".reveal").forEach((el) => (io ? io.observe(el) : el.classList.add("in")));
 
+$("#filters").addEventListener("scroll", updateSwipe, { passive: true });
+// The hint goes away only after a real swipe (the browser can scroll the row by itself on load).
+["touchstart", "pointerdown", "wheel"].forEach((ev) => $("#filters").addEventListener(ev, () => { $("#filters").dataset.swiped = "1"; updateSwipe(); }, { passive: true }));
+addEventListener("resize", updateSwipe);
 $("#yr").textContent = new Date().getFullYear();
 applyLang();
 

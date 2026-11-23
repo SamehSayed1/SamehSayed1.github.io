@@ -22,10 +22,10 @@ const TYPES = {
   ivr:     { ar: "رد آلي IVR",      en: "IVR" },
 };
 
-/* ===== WORKS — edit this list to add / remove samples =====
-   file: video in assets/video/<id>.mp4, poster in assets/img/posters/<id>.jpg
-   audio:true -> plays an audio file instead of video                         */
-const WORKS = [
+/* ===== WORKS =====
+   The live list comes from the admin dashboard (GET /api/works).
+   This copy is only a fallback, shown if the API can't be reached.      */
+let WORKS = [
   { id: "almadina", d: ["fusha"], type: "corp", dur: 48,
     title: { ar: "المدينة الأولى لتقنية المعلومات", en: "Al Madina Al Oula IT" },
     note:  { ar: "إعلان تعريفي لشركة تقنية بأداء فصيح رصين وواثق.", en: "Corporate promo for an IT company, in a confident, polished Standard Arabic read." } },
@@ -60,6 +60,24 @@ const WORKS = [
     title: { ar: "رد آلي IVR — Tech Manage", en: "IVR System — Tech Manage" },
     note:  { ar: "رسائل رد آلي بالعربية الفصحى والإنجليزية.", en: "Phone-system prompts recorded in both Arabic and English." } },
 ];
+
+/* One shape for every work, whether it came from the fallback list or the API. */
+function normWork(w) {
+  const kind = w.kind || (w.audio ? "audio" : "video");
+  const ytId = kind === "youtube" ? ((w.src || "").match(/[?&]v=([\w-]+)/) || [])[1] : null;
+  return {
+    id: w.id, kind, ytId,
+    src: w.src || `assets/video/${w.id}.mp4`,
+    poster: w.poster != null ? w.poster : kind === "audio" ? "" : `assets/img/posters/${w.id}.jpg`,
+    d: (w.d || w.dialects || []).filter((k) => DIALECTS[k]),
+    type: TYPES[w.type] ? w.type : "ad",
+    dur: w.dur || 0,
+    title: { ar: w.title.ar, en: w.title.en || w.title.ar },
+    note: { ar: w.note?.ar || "", en: w.note?.en || w.note?.ar || "" },
+  };
+}
+WORKS = WORKS.map(normWork);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 const SERVICES = [
   { k: "ad",      icon: "M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zm13.5 1A4.5 4.5 0 0 0 14 8v8a4.47 4.47 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06A9 9 0 0 0 14 3.23z",
@@ -205,12 +223,13 @@ const tagsHTML = (w) =>
 
 function renderGrid() {
   $("#grid").innerHTML = WORKS.map((w, i) => {
-    const media = w.audio
+    const isAudio = w.kind === "audio";
+    const media = isAudio && !w.poster
       ? `<div class="eq" aria-hidden="true">${Array.from({ length: 14 }, (_, j) => `<i style="height:${20 + ((j * 37) % 60)}px;animation-delay:-${(j * 0.13).toFixed(2)}s"></i>`).join("")}</div><span class="lbl">${T[lang]["card.audio"]}</span>`
-      : `<img src="assets/img/posters/${w.id}.jpg" alt="" loading="lazy" width="960" height="540">`;
-    return `<article class="card${w.audio ? " card-audio" : ""}" data-i="${i}" data-d="${w.d.join(" ")}" tabindex="0" role="button" aria-label="${T[lang]["card.play"]}: ${w.title[lang]}">
-      <div class="thumb">${media}<span class="pbtn">${icon(PLAY)}</span>${w.dur ? `<span class="dur">${fmt(w.dur)}</span>` : `<span class="dur" data-dur="${w.id}"></span>`}</div>
-      <div class="card-body"><div class="card-tags">${tagsHTML(w)}</div><h3>${w.title[lang]}</h3><p>${w.note[lang]}</p></div>
+      : `<img src="${esc(w.poster)}" alt="" loading="lazy" width="960" height="540">`;
+    return `<article class="card${isAudio && !w.poster ? " card-audio" : ""}" data-i="${i}" data-d="${w.d.join(" ")}" tabindex="0" role="button" aria-label="${esc(T[lang]["card.play"] + ": " + w.title[lang])}">
+      <div class="thumb">${media}<span class="pbtn">${icon(PLAY)}</span>${w.dur ? `<span class="dur">${fmt(w.dur)}</span>` : ""}</div>
+      <div class="card-body"><div class="card-tags">${tagsHTML(w)}</div><h3>${esc(w.title[lang])}</h3>${w.note[lang] ? `<p>${esc(w.note[lang])}</p>` : ""}</div>
     </article>`;
   }).join("");
   setFilter(filter);
@@ -218,16 +237,15 @@ function renderGrid() {
     const w = WORKS[+c.dataset.i];
     c.addEventListener("click", () => openLB(w));
     c.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLB(w); } });
-    if (!w.audio && matchMedia("(hover:hover) and (pointer:fine)").matches) hoverPreview(c, w);
+    if (w.kind === "video" && matchMedia("(hover:hover) and (pointer:fine)").matches) hoverPreview(c, w);
   });
-  const ad = $('[data-dur="car"]'); if (ad && demoAudio.duration) ad.textContent = fmt(demoAudio.duration);
 }
 
 function hoverPreview(card, w) {
   let v, t;
   card.addEventListener("mouseenter", () => {
     t = setTimeout(() => {
-      if (!v) { v = document.createElement("video"); v.muted = true; v.loop = true; v.playsInline = true; v.preload = "auto"; v.src = `assets/video/${w.id}.mp4`; $(".thumb", card).prepend(v); }
+      if (!v) { v = document.createElement("video"); v.muted = true; v.loop = true; v.playsInline = true; v.preload = "auto"; v.src = w.src; $(".thumb", card).prepend(v); }
       v.currentTime = 0; v.play().then(() => card.classList.add("previewing")).catch(() => {});
     }, 350);
   });
@@ -241,10 +259,12 @@ function openLB(w) {
   stopDemo();
   lastFocus = document.activeElement;
   const media = $(".lb-media");
-  if (w.audio) {
-    media.innerHTML = `<div class="lb-audio"><div class="eq" aria-hidden="true">${Array.from({ length: 22 }, (_, j) => `<i style="height:${24 + ((j * 41) % 90)}px;animation-delay:-${(j * 0.11).toFixed(2)}s"></i>`).join("")}</div><audio controls autoplay src="${w.src}"></audio></div>`;
+  if (w.kind === "audio") {
+    media.innerHTML = `<div class="lb-audio"><div class="eq" aria-hidden="true">${Array.from({ length: 22 }, (_, j) => `<i style="height:${24 + ((j * 41) % 90)}px;animation-delay:-${(j * 0.11).toFixed(2)}s"></i>`).join("")}</div><audio controls autoplay src="${esc(w.src)}"></audio></div>`;
+  } else if (w.kind === "youtube" && w.ytId) {
+    media.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(w.ytId)}?autoplay=1&rel=0&modestbranding=1" title="${esc(w.title[lang])}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   } else {
-    media.innerHTML = `<video controls playsinline autoplay poster="assets/img/posters/${w.id}.jpg" src="assets/video/${w.id}.mp4"></video>`;
+    media.innerHTML = `<video controls playsinline autoplay poster="${esc(w.poster)}" src="${esc(w.src)}"></video>`;
   }
   $("#lbTags").innerHTML = tagsHTML(w);
   $("#lbTitle").textContent = w.title[lang];
@@ -421,6 +441,16 @@ $$(".reveal").forEach((el) => (io ? io.observe(el) : el.classList.add("in")));
 
 $("#yr").textContent = new Date().getFullYear();
 applyLang();
+
+/* Load the live works managed from the admin dashboard. */
+fetch("/api/works", { headers: { accept: "application/json" } })
+  .then((r) => (r.ok && (r.headers.get("content-type") || "").includes("json") ? r.json() : null))
+  .then((data) => {
+    if (!data || !Array.isArray(data.works)) return;
+    WORKS = data.works.map(normWork);
+    renderFilters(); renderGrid();
+  })
+  .catch(() => {});
 drawWave();
 if ("requestIdleCallback" in window) requestIdleCallback(loadPeaks, { timeout: 2500 }); else setTimeout(loadPeaks, 1200);
 })();

@@ -1,0 +1,13 @@
+# Cloudflare Pages config — the bindings the admin dashboard needs.
+name = "samehsayed"
+pages_build_output_dir = "./public"
+compatibility_date = "2025-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "samehsayed-db"
+database_id = "23998f19-f70e-42e6-abb6-826396be2a48"
+
+[[kv_namespaces]]
+binding = "MEDIA"
+id = "19d3344cb6194fd9a3afcb574fa07e54"

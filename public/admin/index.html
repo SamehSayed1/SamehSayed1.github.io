@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة التحكم — سامح سيد</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234361EE'/%3E%3Cstop offset='1' stop-color='%237B2FF7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='25' y='12' width='14' height='26' rx='7' fill='%23fff'/%3E%3Cpath d='M18 30a14 14 0 0 0 28 0' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M32 44v8' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+
+<!-- ===== Auth screens ===== -->
+<main class="auth" id="auth" hidden>
+  <form class="auth-card" id="authForm" autocomplete="on">
+    <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M6.5 10.5a5.5 5.5 0 0 0 11 0M12 16v4M9 20.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <h1 id="authTitle">لوحة التحكم</h1>
+    <p class="muted" id="authSub">أدخل كلمة المرور للمتابعة.</p>
+    <input type="text" name="username" value="admin" autocomplete="username" hidden>
+    <label class="field"><span>كلمة المرور</span>
+      <input type="password" id="pw1" required minlength="8" autocomplete="current-password" dir="ltr">
+    </label>
+    <label class="field" id="pw2Wrap" hidden><span>تأكيد كلمة المرور</span>
+      <input type="password" id="pw2" minlength="8" autocomplete="new-password" dir="ltr">
+    </label>
+    <p class="form-error" id="authErr" role="alert" hidden></p>
+    <button class="btn btn-grad btn-block" id="authBtn" type="submit">دخول</button>
+    <a class="muted small back" href="/">← العودة إلى الموقع</a>
+  </form>
+</main>
+
+<!-- ===== Dashboard ===== -->
+<div class="app" id="app" hidden>
+  <header class="top">
+    <div class="wrap top-in">
+      <div class="brand">
+        <span class="logo sm" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M6.5 10.5a5.5 5.5 0 0 0 11 0M12 16v4M9 20.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <span><b>لوحة التحكم</b><small>سامح سيد</small></span>
+      </div>
+      <nav class="top-actions">
+        <a class="btn btn-ghost btn-sm" href="/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="hide-sm">عرض الموقع</span></a>
+        <button class="btn btn-ghost btn-sm" id="pwBtn" type="button" title="تغيير كلمة المرور">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 9V7a5 5 0 0 0-10 0v2H5v12h14V9zm-8-2a3 3 0 0 1 6 0v2H9zm3 6a2 2 0 0 1 1 3.7V19h-2v-2.3A2 2 0 0 1 12 13z"/></svg><span class="hide-sm">كلمة المرور</span></button>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn" type="button" title="تسجيل الخروج">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h9a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-9v-2h9V5h-9zM8.6 7.6 10 9l-2 2h8v2H8l2 2-1.4 1.4L4.2 12z"/></svg><span class="hide-sm">خروج</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <section class="intro">
+      <div>
+        <h1>أعمالي</h1>
+        <p class="muted">أضف أعمالك أو عدّلها أو احذفها، ورتّبها كما تريد. أي تغيير يظهر في الموقع فورًا.</p>
+      </div>
+      <button class="btn btn-grad" id="addBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>إضافة عمل</button>
+    </section>
+
+    <ul class="summary" id="summary"></ul>
+
+    <div class="toolbar">
+      <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5 5-1.4 1.4-5-5A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+        <input id="search" type="search" placeholder="ابحث في الأعمال…"></label>
+    </div>
+
+    <ol class="list" id="list" aria-live="polite"></ol>
+    <div class="empty" id="empty" hidden>
+      <p>لا توجد أعمال بعد.</p>
+      <button class="btn btn-grad" type="button" data-add>إضافة أول عمل</button>
+    </div>
+  </main>
+</div>
+
+<!-- ===== Work editor ===== -->
+<div class="modal" id="editor" hidden>
+  <form class="sheet" id="editForm" novalidate>
+    <header class="sheet-head">
+      <h2 id="editTitle">إضافة عمل</h2>
+      <button class="x" type="button" data-close aria-label="إغلاق">×</button>
+    </header>
+
+    <div class="sheet-body">
+      <fieldset class="group">
+        <legend>نوع العمل</legend>
+        <div class="seg" role="radiogroup" id="kindSeg">
+          <label><input type="radio" name="kind" value="video" checked><span>فيديو</span></label>
+          <label><input type="radio" name="kind" value="audio"><span>ملف صوتي</span></label>
+          <label><input type="radio" name="kind" value="youtube"><span>رابط يوتيوب</span></label>
+        </div>
+      </fieldset>
+
+      <!-- file -->
+      <div class="group" id="fileGroup">
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="اختيار ملف">
+          <input type="file" id="fileIn" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 16V7.8L8.4 10.4 7 9l5-5 5 5-1.4 1.4L13 7.8V16zm-6 2h14v2H5z"/></svg>
+          <b id="dropTitle">اختر ملف الفيديو أو اسحبه هنا</b>
+          <small class="muted" id="dropHint">MP4 — بحد أقصى 25 ميجابايت</small>
+        </div>
+        <div class="preview" id="preview" hidden></div>
+      </div>
+
+      <!-- youtube -->
+      <div class="group" id="ytGroup" hidden>
+        <label class="field"><span>رابط الفيديو على يوتيوب</span>
+          <input type="url" id="ytUrl" dir="ltr" placeholder="https://www.youtube.com/watch?v=..."></label>
+        <img class="yt-thumb" id="ytThumb" alt="" hidden>
+      </div>
+
+      <!-- poster -->
+      <div class="group" id="posterGroup">
+        <span class="label">الصورة المصغّرة</span>
+        <div class="poster-row">
+          <div class="poster" id="posterBox"><span class="muted small">تُنشأ تلقائيًا من الفيديو</span></div>
+          <div class="poster-actions">
+            <button class="btn btn-ghost btn-sm" type="button" id="grabBtn" hidden>استخدام اللقطة الحالية</button>
+            <label class="btn btn-ghost btn-sm">رفع صورة أخرى<input type="file" id="posterIn" accept="image/jpeg,image/png,image/webp" hidden></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <label class="field"><span>العنوان بالعربية <i>*</i></span><input id="titleAr" maxlength="160" required></label>
+        <label class="field"><span>العنوان بالإنجليزية</span><input id="titleEn" maxlength="160" dir="ltr"></label>
+      </div>
+      <div class="row2">
+        <label class="field"><span>وصف قصير بالعربية</span><textarea id="noteAr" rows="2" maxlength="400"></textarea></label>
+        <label class="field"><span>وصف قصير بالإنجليزية</span><textarea id="noteEn" rows="2" maxlength="400" dir="ltr"></textarea></label>
+      </div>
+
+      <fieldset class="group">
+        <legend>اللهجة أو اللغة <i>*</i></legend>
+        <div class="chips" id="dialectChips"></div>
+      </fieldset>
+
+      <div class="row2">
+        <label class="field"><span>التصنيف</span><select id="typeSel"></select></label>
+        <label class="switch"><input type="checkbox" id="visibleIn" checked><span class="track"></span><span>ظاهر في الموقع</span></label>
+      </div>
+
+      <p class="form-error" id="editErr" role="alert" hidden></p>
+    </div>
+
+    <footer class="sheet-foot">
+      <div class="progress" id="progress" hidden><span id="progressBar"></span><small id="progressText"></small></div>
+      <button class="btn btn-ghost" type="button" data-close>إلغاء</button>
+      <button class="btn btn-grad" type="submit" id="saveBtn">حفظ</button>
+    </footer>
+  </form>
+</div>
+
+<!-- ===== Confirm delete ===== -->
+<div class="modal" id="confirm" hidden>
+  <div class="sheet small-sheet" role="alertdialog" aria-labelledby="confirmTitle">
+    <div class="sheet-body center">
+      <span class="danger-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1 2h4v2H4V5h4zm-3 6h12l-1 12H7zm4 2v8h2v-8zm4 0v8h2v-8z"/></svg></span>
+      <h2 id="confirmTitle">حذف هذا العمل؟</h2>
+      <p class="muted" id="confirmText">سيُحذف نهائيًا من الموقع، ولا يمكن التراجع عن ذلك.</p>
+    </div>
+    <footer class="sheet-foot">
+      <button class="btn btn-ghost" type="button" data-close>إلغاء</button>
+      <button class="btn btn-danger" type="button" id="confirmYes">حذف نهائي</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ===== Change password ===== -->
+<div class="modal" id="pwModal" hidden>
+  <form class="sheet small-sheet" id="pwForm">
+    <header class="sheet-head"><h2>تغيير كلمة المرور</h2><button class="x" type="button" data-close aria-label="إغلاق">×</button></header>
+    <div class="sheet-body">
+      <input type="text" name="username" value="admin" autocomplete="username" hidden>
+      <label class="field"><span>كلمة المرور الحالية</span><input type="password" id="pwCur" required autocomplete="current-password" dir="ltr"></label>
+      <label class="field"><span>كلمة المرور الجديدة (8 أحرف على الأقل)</span><input type="password" id="pwNew" required minlength="8" autocomplete="new-password" dir="ltr"></label>
+      <p class="form-error" id="pwErr" role="alert" hidden></p>
+    </div>
+    <footer class="sheet-foot">
+      <button class="btn btn-ghost" type="button" data-close>إلغاء</button>
+      <button class="btn btn-grad" type="submit">حفظ</button>
+    </footer>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="admin.js?v=1"></script>
+</body>
+</html>

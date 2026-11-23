@@ -314,3 +314,4 @@ html[dir=rtl] .wa-card .arrow,html[dir=rtl] .form .btn svg{transform:scaleX(-1)}
   .contact-in{padding:22px;border-radius:26px}
   .fab{width:54px;height:54px;bottom:16px;inset-inline-end:16px}
 }
+.lb-media iframe{width:100%;aspect-ratio:16/9;max-height:calc(100vh - 220px);border:0;background:#000}
